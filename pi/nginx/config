@@ -1,0 +1,27 @@
+server
+{
+        listen 11111 default_server;
+        server_name _;
+        location ^~ /download {
+        allow 192.168.1.0/24;
+        deny all;
+        include uwsgi_params;
+        uwsgi_pass unix:/usr/local/share/opendoor/uwsgi.sock;
+        }
+        location ^~ /wifi {
+        allow 192.168.1.1;
+        deny all;
+        include uwsgi_params;
+        uwsgi_pass unix:/usr/local/share/opendoor/uwsgi.sock;
+        }
+        location ^~ /opendoor {
+        allow your_forward_server_ip;
+        deny all;
+        include uwsgi_params;
+        uwsgi_pass unix:/usr/local/share/opendoor/uwsgi.sock;
+        }
+        location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/usr/local/share/opendoor/uwsgi.sock;
+        }
+}

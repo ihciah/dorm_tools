@@ -1,0 +1,1 @@
+https://github.com/gaoming13/wechat-php-sdk.git
