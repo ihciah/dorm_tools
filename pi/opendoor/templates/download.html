@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Torrent Download</title>
-    <link href="{{ url_for('static', filename='bootstrap.mim.js') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
     <style>
     .colorgraph {
         height: 5px;
@@ -22,6 +22,7 @@
             <form role="form" method="post" action="download">
                 <fieldset>
                     <h2>Ihc's NAS Uploader</h2>
+                    <h4><a href="{{ url_for('static', filename='ui/index.html') }}" target="_blank">Webui</a></h4>
                     <hr class="colorgraph">
                     <div class="form-group">
                         <input name="torrent" class="form-control input-lg" placeholder="Paste FDU-PT torrent URL here!">

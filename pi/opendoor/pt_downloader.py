@@ -57,11 +57,11 @@ class PT_downloader():
             return False, "Login failed!"
         torrent_id = self.get_torrent_id(input_url)
         if not torrent_id:
-            return False, "Error: Cannot parser torrent_id! torrent_id = %s" % torrent_id
+            return False, "Error: Cannot parse torrent_id! torrent_id = %s" % torrent_id
         download_url = "https://pt.vm.fudan.edu.cn/index.php?action=dltorrent;id=%d" % int(torrent_id)
         torrent = self.s.get(download_url)
         if torrent.status_code != 200:
-            return False, "Error: Cannot downlaod torrent! status_code = %d" % torrent.status_code
+            return False, "Error: Cannot download torrent file! status_code = %d" % torrent.status_code
         torrent = b64encode(torrent.content)
         requests.post(RPC_URL, json.dumps({
             "jsonrpc": "2.0",

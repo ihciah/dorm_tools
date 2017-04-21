@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import request
+from flask import redirect
+from flask import url_for
 from utils import wx_open
 from utils import wifi_open
 from utils import wifi_client_auth
@@ -16,8 +18,8 @@ logging.warning("Init!")
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def home_page():
+    return redirect(url_for('download_torrent'))
 
 
 @app.route('/opendoor', methods=['GET'])
@@ -65,6 +67,11 @@ def download_torrent():
         downloader = PT_downloader()
         status, info = downloader.download_torrent(torrent)
         return render_template('download.html', info=info)
+
+
+@app.route('/ui', methods=['GET'])
+def ui_redirect():
+    return redirect(url_for('static', filename='ui/index.html'))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
